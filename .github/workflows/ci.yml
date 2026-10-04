@@ -34,7 +34,7 @@ permissions:
         - name: Testleri çalıştır
           run: npm test
 
-docker-build:
+    docker-build:
       name: Docker image oluştur
       runs-on: ubuntu-latest
       timeout-minutes: 10
