@@ -1,0 +1,36 @@
+name: Node.js CI
+
+  on:
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
+    workflow_dispatch:
+
+  permissions:
+    contents: read
+
+  jobs:
+    test:
+      name: Testleri çalıştır
+      runs-on: ubuntu-latest
+      timeout-minutes: 10
+
+      steps:
+        - name: Repository kodunu indir
+          uses: actions/checkout@v7
+
+        - name: Node.js ortamını hazırla
+          uses: actions/setup-node@v7
+          with:
+            node-version: "22"
+            cache: npm
+
+        - name: Bağımlılıkları yükle
+          run: npm ci
+
+        - name: Testleri çalıştır
+          run: npm test
+
