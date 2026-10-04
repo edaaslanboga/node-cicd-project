@@ -12,7 +12,7 @@ on:
 permissions:
     contents: read
 
-jobs:
+  jobs:
     test:
       name: Testleri çalıştır
       runs-on: ubuntu-latest
@@ -33,4 +33,17 @@ jobs:
 
         - name: Testleri çalıştır
           run: npm test
+
+docker-build:
+      name: Docker image oluştur
+      runs-on: ubuntu-latest
+      timeout-minutes: 10
+      needs: test
+
+      steps:
+        - name: Repository kodunu indir
+          uses: actions/checkout@v7
+
+        - name: Docker image oluştur
+          run: docker build -t node-cicd-project:${{ github.sha }} .
 
