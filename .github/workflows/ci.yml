@@ -12,7 +12,7 @@ on:
 permissions:
     contents: read
 
-  jobs:
+jobs:
     test:
       name: Testleri çalıştır
       runs-on: ubuntu-latest
